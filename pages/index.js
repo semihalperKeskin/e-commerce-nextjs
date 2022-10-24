@@ -1,39 +1,29 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import styles from "/css/Home.module.css"
+import Header from '../components/header'
+import ContextApp from '../components/AppContext'
 
 export default function Home() {
-  const [products, setProducts] = useState();
+  
+  const context = useContext(ContextApp);
+  
 
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products").then(res => res.json()).then(res => setProducts(res))
-    console.log(products)
-  }, [])
+ 
+
   return (
-    <div>
+    <>
       <Head>
         <title>E commerce</title>
       </Head>
-
-      <nav className="flex space-x-4 bg-yellow-200 p-2 pl-48">
-        {[
-          ['Anasayfa', '/'],
-          ['Katagoriler', '/katagori'],
-          ['Hakkimizda', '/hakkinda'],
-          ['İletişim', '/iletisim'],
-        ].map(([title, url]) => (
-          <a href={url} className="rounded-lg px-3 py-2 text-slate-700 font-medium hover:bg-slate-100 hover:text-slate-900"><Link href={url}>{title}</Link></a>
-        ))}
-      </nav>
-
-
+      <Header/>
 
       <div className='px-52 mt-20'>
-        {products && products.map((item) => {
+        {context.products && context.products.map((item, i) => {
           return (
-            <>
+            <div key={i}>
               <div className='card box-border w-60 p-4 border-4 mr-10'>
                 <img class="rounded" src={item.image} alt="imgAlt" />
                 <div class="mt-2 card-detail">
@@ -46,7 +36,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            </>
+            </div>
           )
         })}
 
@@ -96,6 +86,6 @@ export default function Home() {
       }
       `}</style>
 
-    </div>
+    </>
   )
 }
