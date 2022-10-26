@@ -3,32 +3,40 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useContext, useEffect, useState } from 'react'
 import styles from "/css/Home.module.css"
-import Header from '../components/header'
-import ContextApp from '../components/AppContext'
+import Header from '../components/Header'
+import ContextApp from '../components/ContextApp'
+import Fetch from '../components/Fetch'
 
 export default function Home() {
-  
+  const [products, setProducts] = useState();
   const context = useContext(ContextApp);
-  
 
- 
+  
+  useEffect(()=>{
+    Fetch(setProducts);
+  },[]) 
+
+  const data = {
+    products,
+    setProducts
+  }
 
   return (
-    <>
+    <ContextApp.Provider value={data}>
       <Head>
         <title>E commerce</title>
       </Head>
       <Header/>
 
       <div className='px-52 mt-20'>
-        {context.products && context.products.map((item, i) => {
+        {products && products.map((item, i) => {
           return (
             <div key={i}>
               <div className='card box-border w-60 p-4 border-4 mr-10'>
                 <img class="rounded" src={item.image} alt="imgAlt" />
                 <div class="mt-2 card-detail">
                   <div>
-                    <div class="text-sm text-slate-600 uppercase font-black tracking-wider">{item.title}</div>
+                    <div class="tittle text-sm text-slate-600 uppercase font-black tracking-wider">{item.title}</div>
                     <div class="font-bold text-slate-700 leading-snug">
                       <Link href={`/product/${item.id}`} class="hover:underline">Ürün Detay</Link>
                     </div>
@@ -43,17 +51,6 @@ export default function Home() {
 
       </div>
       <style jsx>{`
-      .navbar{
-        padding:5px;
-        background-color: #C8DBBE;
-          ul{
-            list-style: none;
-            li{
-              display: inline;
-              margin-left: 45px;
-            }
-          }
-      }
       .card{
         display: flex;
         border: 1px solid red;
@@ -76,7 +73,7 @@ export default function Home() {
           width: 250px;
         height: 250px;
         }
-        .text-xs{
+        .tittle{
           max-witdh: 20px;
         }
         .card-detail{
@@ -86,6 +83,6 @@ export default function Home() {
       }
       `}</style>
 
-    </>
+    </ContextApp.Provider>
   )
 }

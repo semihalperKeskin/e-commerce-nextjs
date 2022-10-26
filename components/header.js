@@ -11,5 +11,19 @@ export default function Header() {
         ].map(([title, url]) => (
             <a href={url} className="rounded-lg px-3 py-2 text-slate-700 font-medium hover:bg-slate-100 hover:text-slate-900"><Link href={url}>{title}</Link></a>
         ))}
+
+        <style jsx>{`
+        .navbar{
+        padding:5px;
+        background-color: #C8DBBE;
+          ul{
+            list-style: none;
+            li{
+              display: inline;
+              margin-left: 45px;
+            }
+          }
+      }`}
+        </style>
     </nav>
 }
