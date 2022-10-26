@@ -1,6 +1,5 @@
 import { useRouter } from "next/router"
-import { useContext, useEffect, useState } from "react";
-import ContextApp from "../../components/ContextApp";
+import { useEffect, useState } from "react";
 import Fetch from "../../components/Fetch";
 import Header from "../../components/Header";
 

@@ -1,28 +1,21 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import Image from 'next/image'
 import { useContext, useEffect, useState } from 'react'
-import styles from "/css/Home.module.css"
 import Header from '../components/Header'
 import ContextApp from '../components/ContextApp'
 import Fetch from '../components/Fetch'
 
 export default function Home() {
   const [products, setProducts] = useState();
-  const context = useContext(ContextApp);
 
   
   useEffect(()=>{
     Fetch(setProducts);
   },[]) 
 
-  const data = {
-    products,
-    setProducts
-  }
 
   return (
-    <ContextApp.Provider value={data}>
+    <>
       <Head>
         <title>E commerce</title>
       </Head>
@@ -83,6 +76,6 @@ export default function Home() {
       }
       `}</style>
 
-    </ContextApp.Provider>
+    </>
   )
 }
