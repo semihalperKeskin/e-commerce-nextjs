@@ -8,8 +8,8 @@ export default function Header() {
             ['Katagoriler', '/katagori'],
             ['Hakkimizda', '/hakkinda'],
             ['İletişim', '/iletisim'],
-        ].map(([title, url]) => (
-            <a href={url} className="rounded-lg px-3 py-2 text-slate-700 font-medium hover:bg-slate-100 hover:text-slate-900"><Link href={url}>{title}</Link></a>
+        ].map(([title, url], i) => (
+            <a key={i} href={url} className="rounded-lg px-3 py-2 text-slate-700 font-medium hover:bg-slate-100 hover:text-slate-900"><Link href={url}>{title}</Link></a>
         ))}
 
         <style jsx>{`

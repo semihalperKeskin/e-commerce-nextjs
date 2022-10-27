@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import ContextApp from '../components/AppContext';
 import '../styles/globals.css'
 
 
