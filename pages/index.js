@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import Header from '../components/Header'
+import Navbar from '../components/Navbar'
 import Fetch from '../components/Fetch'
 import Image from 'next/image'
 
@@ -19,22 +19,22 @@ export default function Home() {
       <Head>
         <title>E commerce</title>
       </Head>
-      <Header/>
+      <Navbar/>
 
       <div className='px-52 mt-20'>
         {products && products.map((item) => {
           return (
             <div key={item.id}>
               <div className='card box-border w-60 p-4 border-4 mr-10'>
-                <Image class="rounded" src={item.image} alt="imgAlt" width= "250"
+                <Image className="rounded" src={item.image} alt="imgAlt" width= "250"
         height= "250"/>
-                <div class="mt-2 card-detail">
+                <div className="mt-2 card-detail">
                   <div>
-                    <div class="tittle text-sm text-slate-600 uppercase font-black tracking-wider">{item.title}</div>
-                    <div class="font-bold text-slate-700 leading-snug">
-                      <Link href={`/product/${item.id}`} class="hover:underline">Ürün Detay</Link>
+                    <div className="tittle text-sm text-slate-600 uppercase font-black tracking-wider">{item.title}</div>
+                    <div className="font-bold text-slate-700 leading-snug">
+                      <Link href={`/product/${item.id}`} className="hover:underline">Ürün Detay</Link>
                     </div>
-                    <div class="card-price text-slate-600">{item.price}</div>
+                    <div className="card-price text-slate-600">{item.price}</div>
                   </div>
                 </div>
               </div>
